@@ -103,6 +103,13 @@ floating_modifier $mod
 
 #floating_maximum_size 800 x 800
 
+# Establecer márgenes para simular gaps
+default_border pixel
+default_floating_border pixel
+
+# Márgenes específicos para diferentes tipos de contenedores
+gaps inner 10
+gaps outer 5
 #--------#
 # Layout #
 #--------#
@@ -195,7 +202,6 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 # Audio #
 #-------#
 
-# volume keys, requires alsa-utils
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -232,8 +238,8 @@ exec_always feh --bg-fill ~/Pictures/Wallpapers/wallpaper.png
 exec --no-startup-id xfce4-power-manager
 
 # Fix for gap between windows.
-#exec_always --no-startup-id compton --shadow-exclude 'bounding_shaped'
-exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id compton --shadow-exclude 'bounding_shaped'
+#exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id waybar &
 
 # Keep in mind that sway uses different backend for display configuration than X11.
