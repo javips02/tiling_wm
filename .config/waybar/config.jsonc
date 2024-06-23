@@ -14,6 +14,7 @@
     "memory",
     "pulseaudio",
 	"brightness",
+	"battery",
     "clock",
     "clock#simpleclock",
     "tray",
@@ -83,4 +84,13 @@
 	  "on-click": "brightnessctl set +10%",
 	  "on-click-right": "brightnessctl set -10%"
   },
+"battery": {
+    "format": " {percentage}%",
+    "interval": 60,
+    "status-charging": " {percentage}%",
+    "status-full": " {percentage}% (Full)",
+    "status-discharging": " {percentage}%",
+    "tooltip-format": "{status} - {time} remaining",
+    "exec": "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $2}'"
+},
 }
