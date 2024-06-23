@@ -189,26 +189,18 @@ set $menu exec rofi -modi drun -show drun -font "DejaVu Sans Mono 12"
 bindsym $mod+d exec $menu
 
 # Monitor brightness
-# * bright xrandr --output HDMI-A-1 --brightness 0.8 && xrandr --output DP-2 --brightness 0.8
-# * xbacklight -set 50%
-# * echo 500 > /sys/class/backlight/intel_backlight/brightness
-# Alternatively: brightnessctl, https://github.com/Hummer12007/brightnessctl
-#bindsym $mod+minus exec brightnessctl set 10%- 
-bindsym $mod+equal exec brightnessctl set +10%
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%-
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%+
 
 #-------#
 # Audio #
 #-------#
 
 # volume keys, requires alsa-utils
-#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ unmute
-#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- unmute
-#bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle
-bindsym XF86AudioRaiseVolume exec pamixer -i 5
-bindsym XF86AudioLowerVolume exec pamixer -d 5
-bindsym XF86AudioMute exec pamixer -t
-bindsym XF86AudioMicMute exec pamixer --default-source -t
-
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 #-------#
 # Locks #
 #-------#
@@ -221,7 +213,7 @@ bindsym $mod+Shift+Escape exec i3lock -n -i ~/Pictures/Wallpapers/wallpaper.png 
 #-----------#
 
 # Regular lock screen.
-exec swaylock --scaling fill --image ~/Pictures/Wallpapers/wallpaper.png 
+#exec swaylock --scaling fill --image ~/Pictures/Wallpapers/wallpaper.png 
 
 # Lock screen on sleep.
 exec swayidle \
@@ -245,6 +237,8 @@ exec --no-startup-id xfce4-power-manager
 # Fix for gap between windows.
 #exec_always --no-startup-id compton --shadow-exclude 'bounding_shaped'
 exec_always --no-startup-id picom --experimental-backends
+#exec_always --no-startup-id pkill -x waybar && waybar &
+exec_always --no-startup-id waybar &
 
 # Keep in mind that sway uses different backend for display configuration than X11.
 # https://wayland-book.com/seat/multiseat.html

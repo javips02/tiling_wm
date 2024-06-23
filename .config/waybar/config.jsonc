@@ -7,8 +7,8 @@
   "gtk-layer-shell": true,
   "passthrough": false,
   "fixed-center": true,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["custom/spotify"],
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["sway/window"],
   "modules-right": [
     "cpu",
     "memory",
@@ -18,14 +18,6 @@
     "tray",
     "custom/power",
   ],
-  "custom/spotify": {
-    "format": "{}",
-    "return-type": "json",
-    "on-click": "playerctl -p spotify play-pause",
-    "on-click-right": "spotifatius toggle-liked",
-    "on-click-middle": "playerctl -p spotify next",
-    "exec": "spotifatius monitor",
-  },
   "wlr/workspaces": {
     "on-click": "activate",
     "format": "{name}",
