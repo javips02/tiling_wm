@@ -13,6 +13,7 @@
     "cpu",
     "memory",
     "pulseaudio",
+	"brightness",
     "clock",
     "clock#simpleclock",
     "tray",
@@ -68,8 +69,18 @@
     "tooltip": false,
   },
   "custom/power": {
-    "tooltip": false,
-    "on-click": "wlogout -p layer-shell &",
-    "format": "⏻ ",
+	  "tooltip": false,
+	  "format": "⏻ ",
+	  "on-click": "~/.config/waybar/session.sh",
+  },
+  "brightness": {
+	  "format": "{icon} {percentage}%",
+	  "interval": 5,
+	  "exec": "brightnessctl --get",
+	  "format-icons": {
+		  "icon": ""  // Este es un ejemplo de icono, puedes ajustarlo según tus preferencias
+	  },
+	  "on-click": "brightnessctl set +10%",
+	  "on-click-right": "brightnessctl set -10%"
   },
 }

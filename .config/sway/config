@@ -3,12 +3,6 @@
 #--------#
 
 # virtual console: /etc/vconsole.conf
-#input * {
-#	xkb_model pc104
-#	xkb_layout es
-#    xkb_variant nodeadkeys
-#	natural_scroll enabled
-#}
 
 # Configuración del teclado en español
 input "1:1:AT_Translated_Set_2_keyboard" {
@@ -38,6 +32,11 @@ input "1739:52828:SYNA8020:00_06CB:CE5C_Touchpad" {
 
 # Configuración del Mouse
 input "1739:52828:SYNA8020:00_06CB:CE5C_Mouse" {
+    accel_profile adaptive
+    pointer_accel 0.4
+}
+
+input "Logitech G305" {
     accel_profile adaptive
     pointer_accel 0.4
 }
@@ -189,8 +188,8 @@ set $menu exec rofi -modi drun -show drun -font "DejaVu Sans Mono 12"
 bindsym $mod+d exec $menu
 
 # Monitor brightness
-bindsym XF86MonBrightnessUp exec brightnessctl set 10%-
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%+
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 #-------#
 # Audio #
@@ -232,12 +231,9 @@ exec_always feh --bg-fill ~/Pictures/Wallpapers/wallpaper.png
 # Hardware daemon.
 exec --no-startup-id xfce4-power-manager
 
-# Fish shell.
-#exec --no-startup-id fish
 # Fix for gap between windows.
 #exec_always --no-startup-id compton --shadow-exclude 'bounding_shaped'
 exec_always --no-startup-id picom --experimental-backends
-#exec_always --no-startup-id pkill -x waybar && waybar &
 exec_always --no-startup-id waybar &
 
 # Keep in mind that sway uses different backend for display configuration than X11.
@@ -258,3 +254,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 #exec_always --no-startup-id /usr/libexec/xdg-user-dirs-update
 #exec_always --no-startup-id /usr/libexec/xdg-desktop-portal-wlr
 #exec_always --no-startup-id /usr/libexec/xdg-desktop-portal
+
+#Keyring de gnome para mantener sesiones
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec --no-startup-id export $(gnome-keyring-daemon --start)
