@@ -50,6 +50,7 @@ window#waybar.hidden {
 }
 
 #battery,
+#brightness,
 #clock,
 #pulseaudio,
 #custom-logo,
@@ -76,6 +77,10 @@ window#waybar.empty #window {
 
 #cpu {
   color: #94e2d5;
+}
+
+#brightness {
+color: #efe62f;
 }
 
 #memory {
